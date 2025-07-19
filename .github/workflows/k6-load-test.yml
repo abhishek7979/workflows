@@ -19,6 +19,9 @@ jobs:
 
       - name: Run k6 test and save JSON
         run: k6 run --out json=test-results.json test.js
-        uses: grafana/run-k6-action@v1
+
+      - name: Upload k6 results artifact
+        uses: actions/upload-artifact@v3
         with:
-          path: test.js  # Path to your k6 script
+          name: k6-results
+          path: test-results.json
