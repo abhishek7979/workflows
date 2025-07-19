@@ -17,8 +17,14 @@ jobs:
       - name: Setup K6
         uses: grafana/setup-k6-action@v1
 
-      - name: Run k6 test and save JSON
-        run: k6 run --out json=test-results.json test.js
+      # - name: Run k6 test and save JSON
+      #   run: k6 run --out json=test-results.json test.js
+
+      - name: Run k6 for all test files
+        run: |
+          for f in test*.js; do
+            k6 run "$f"
+          done
 
       - name: Upload k6 results artifact
         uses: actions/upload-artifact@v4
