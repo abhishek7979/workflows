@@ -3,6 +3,7 @@ import { sleep } from 'k6';
 
 export const options = {
   iterations: 10, // number of requests
+  vus: 3
 };
 
 export default function () {
