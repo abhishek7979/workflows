@@ -6,7 +6,7 @@ export const options = {
   vus: 3,
 };
 
-export default function () {
+export default funtion () {
   http.get('https://test.k6.io');
   sleep(1);
 }
