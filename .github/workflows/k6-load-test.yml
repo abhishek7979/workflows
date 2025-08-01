@@ -19,10 +19,11 @@ jobs:
 
       - name: Run k6 for all test files and save results
         run: |
-          for f in test*.js; do
-            OUT="${f%.js}-results.csv"
-            k6 run --out csv="$OUT" "$f"
-          done
+                for f in $(find . -type f -name "*.js"); do
+                  OUT="$(echo "$f" | sed 's#^\./##; s#/#_#g; s#\.js$#-results.csv#')"
+                  echo "Running k6 for $f, saving results to $OUT"
+                  k6 run --out csv="$OUT" "$f"
+                done
 
       - name: Upload all k6 CSV result artifacts
         uses: actions/upload-artifact@v4
